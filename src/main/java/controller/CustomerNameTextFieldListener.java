@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 import view.GUI;
 
-public class CustomerNameTextFieldListener implements FocusListener, ActionListener {
+public class CustomerNameTextFieldListener implements ActionListener {
 
     private GUI view = null;
 
@@ -12,13 +12,6 @@ public class CustomerNameTextFieldListener implements FocusListener, ActionListe
         this.view = view;
     }
 
-    @Override
-    public void focusLost(FocusEvent e) {
-        if (!((mainController.invoices.get(mainController.selectedRow).getInoviceCustomerName()).equals((view.getCustomerNameTextField().getText())))) {
-            InvoicesLineController.changeCustomerNameTextField(view, mainController.invoices);
-            view.getInvoiceTable().setRowSelectionInterval(mainController.selectedRow, mainController.selectedRow);
-        }
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -27,8 +20,6 @@ public class CustomerNameTextFieldListener implements FocusListener, ActionListe
         }
     }
 
-    @Override
-    public void focusGained(FocusEvent e) {
-    }
+
 
 }

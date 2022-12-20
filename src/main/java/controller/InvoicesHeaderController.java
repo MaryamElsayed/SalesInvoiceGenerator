@@ -9,19 +9,18 @@ import view.GUI;
 
 public class InvoicesHeaderController {
 
-    TablesController loadTablesContents = new TablesController();
 
-    static void updateTableDate(GUI gui, ArrayList<InvoiceHeader> invoices) {
+    static void updateDateCoulmn(GUI gui, ArrayList<InvoiceHeader> invoices) {
         InvoicesHeaderTableModel.setInvoicesHeaderTableModel(gui)
                 .setValueAt(invoices.get(gui.getInvoiceTable().getSelectedRow()).getInoviceDate(), gui.getInvoiceTable().getSelectedRow(), 1);
     }
 
-    static void updateTableCustomerName(GUI gui, ArrayList<InvoiceHeader> invoices) {
+    static void updateCustomerNameCoulmn(GUI gui, ArrayList<InvoiceHeader> invoices) {
         InvoicesHeaderTableModel.setInvoicesHeaderTableModel(gui)
                 .setValueAt(invoices.get(gui.getInvoiceTable().getSelectedRow()).getInoviceCustomerName(), gui.getInvoiceTable().getSelectedRow(), 2);
     }
 
-    static void updateTableTotal(GUI gui, ArrayList<InvoiceHeader> invoices) {
+    static void updateTotalPriceCoulmn(GUI gui, ArrayList<InvoiceHeader> invoices) {
         InvoicesHeaderTableModel.setInvoicesHeaderTableModel(gui)
                 .setValueAt(invoices.get(gui.getInvoiceTable().getSelectedRow()).getInoviceTotal(), gui.getInvoiceTable().getSelectedRow(), 3);
     }

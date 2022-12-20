@@ -25,8 +25,7 @@ public class mainController implements ActionListener, KeyListener {
     private InvoiceTableListener invoiceTableListener;
     private InvoicesLineTableListener invoicesLineTableListener;
     private FileMenuItemsListener fileMenuItemsListener;
-    private MainFrameWindowListener mainFrameWindowListener;
-    private InvoiceDateTextFieldListener invoiceDateTextFieldListener;
+    //private InvoiceDateTextFieldListener invoiceDateTextFieldListener;
     private CustomerNameTextFieldListener customerNameTextFieldListener;
 
     public mainController(InvoiceHeader invoiceHeader, InvoiceLine invoiceLine, GUI gui) {
@@ -39,9 +38,9 @@ public class mainController implements ActionListener, KeyListener {
         invoiceTableListener = new InvoiceTableListener(gui, fileOperations, invoicesLineTableListener);
 
         fileMenuItemsListener = new FileMenuItemsListener(gui, fileOperations, invoiceTableListener);
-        mainFrameWindowListener = new MainFrameWindowListener(gui, fileOperations, invoiceTableListener);
 
-        invoiceDateTextFieldListener = new InvoiceDateTextFieldListener(gui);
+
+        //invoiceDateTextFieldListener = new InvoiceDateTextFieldListener(gui);
         customerNameTextFieldListener = new CustomerNameTextFieldListener(gui);
 
         turnOnAllActionListerners(gui);
@@ -58,16 +57,10 @@ public class mainController implements ActionListener, KeyListener {
         gui.getSaveFile().setActionCommand("Save File");
 
         gui.getInvoiceTable().getSelectionModel().addListSelectionListener(invoiceTableListener);
-        gui.getInvoicesLineTable().getSelectionModel().addListSelectionListener(invoicesLineTableListener);
-
-        gui.addWindowListener(mainFrameWindowListener);
 
 
-        gui.getInvoiceDateTextField().addActionListener(invoiceDateTextFieldListener);
-        gui.getInvoiceDateTextField().addFocusListener(invoiceDateTextFieldListener);
 
         gui.getCustomerNameTextField().addActionListener(customerNameTextFieldListener);
-        gui.getCustomerNameTextField().addFocusListener(customerNameTextFieldListener);
 
         gui.getCreateNewInvoiceButton().addActionListener(this);
         gui.getCreateNewInvoiceButton().setActionCommand("Create New Invoice");
@@ -139,7 +132,7 @@ public class mainController implements ActionListener, KeyListener {
         if (e.getActionCommand().equals( "Confirm adding an item")) {
                 InvoicesLineController.addNewItem(gui, invoices);
                 InvoicesHeaderController.calculateInvoiceTableTotal(invoices);
-                InvoicesHeaderController.updateTableTotal(gui, invoices);
+                InvoicesHeaderController.updateTotalPriceCoulmn(gui, invoices);
                 InvoicesLineController.updater(gui, invoices, selectedRow);
                 TablesController.loadInvoicesLineTable(gui, invoices);
 
@@ -159,7 +152,7 @@ public class mainController implements ActionListener, KeyListener {
                 if (gui.getFocusOwner() != null) {
                     InvoicesLineController.deleteItem(gui, invoices);
                     InvoicesHeaderController.calculateInvoiceTableTotal(invoices);
-                    InvoicesHeaderController.updateTableTotal(gui, invoices);
+                    InvoicesHeaderController.updateTotalPriceCoulmn(gui, invoices);
                     InvoicesLineController.updater(gui, invoices, selectedRow);
                     TablesController.loadInvoicesLineTable(gui, invoices);
 

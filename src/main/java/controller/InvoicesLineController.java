@@ -16,41 +16,41 @@ public class InvoicesLineController {
         }
     }
 
-    public static void dateValidator(GUI gui, ArrayList<InvoiceHeader> invoices) {
-        int choice = gui.showYesNoCancelDialog(gui.getInvoicesItemsPanel(), "Do you want to save date changes?", "Confirmation");
-        switch (choice) {
-            case 0 -> {
-                try {
-                    if (!gui.getInvoiceDateTextField().getText().matches("^\\d{2}\\-\\d{2}\\-\\d{4}")) {
-                        throw new Exception();
-                    }
-
-                    fileOperations.date.setLenient(false);
-                    fileOperations.date.parse(gui.getInvoiceDateTextField().getText());
-                    invoices.get(gui.getInvoiceTable().getSelectedRow()).setInoviceDate(gui.getDate().parse(gui.getInvoiceDateTextField().getText()));
-                    InvoicesHeaderController.updateTableDate(gui, invoices);
-                    gui.getInvoiceDateTextField().requestFocus();
-                } catch (Exception ex) {
-                    GUI.setJOptionPaneMessagMessage(gui.getInvoicesItemsPanel(), "Please enter a valid date (e.g 06-06-2022)", "wrong date", "ERROR_MESSAGE");
-                    gui.getInvoiceDateTextField().setText(gui.getDate().format(invoices.get(gui.getInvoiceTable().getSelectedRow()).getInoviceDate()));
-                    gui.getInvoiceDateTextField().requestFocus();
-                }
-            }
-            case 1 ->
-                gui.getInvoiceDateTextField().requestFocus();
-            default -> {
-                gui.getInvoiceDateTextField().setText(gui.getDate().format(invoices.get(mainController.selectedRow).getInoviceDate()));
-                gui.getInvoiceDateTextField().requestFocus();
-            }
-        }
-    }
+//    public static void dateValidator(GUI gui, ArrayList<InvoiceHeader> invoices) {
+//        int choice = gui.showYesNoCancelDialog(gui.getInvoicesItemsPanel(), "Do you want to save date changes?", "Confirmation");
+//        switch (choice) {
+//            case 0 -> {
+//                try {
+//                    if (!gui.getInvoiceDateTextField().getText().matches("^\\d{2}\\-\\d{2}\\-\\d{4}")) {
+//                        throw new Exception();
+//                    }
+//
+//                    fileOperations.date.setLenient(false);
+//                    fileOperations.date.parse(gui.getInvoiceDateTextField().getText());
+//                    invoices.get(gui.getInvoiceTable().getSelectedRow()).setInoviceDate(gui.getDate().parse(gui.getInvoiceDateTextField().getText()));
+//                    InvoicesHeaderController.updateDateCoulmn(gui, invoices);
+//                    gui.getInvoiceDateTextField().requestFocus();
+//                } catch (Exception ex) {
+//                    GUI.setJOptionPaneMessagMessage(gui.getInvoicesItemsPanel(), "Please enter a valid date (e.g 06-06-2022)", "wrong date", "ERROR_MESSAGE");
+//                    gui.getInvoiceDateTextField().setText(gui.getDate().format(invoices.get(gui.getInvoiceTable().getSelectedRow()).getInoviceDate()));
+//                    gui.getInvoiceDateTextField().requestFocus();
+//                }
+//            }
+//            case 1 ->
+//                gui.getInvoiceDateTextField().requestFocus();
+//            default -> {
+//                gui.getInvoiceDateTextField().setText(gui.getDate().format(invoices.get(mainController.selectedRow).getInoviceDate()));
+//                gui.getInvoiceDateTextField().requestFocus();
+//            }
+//        }
+//    }
 
     public static void changeCustomerNameTextField(GUI gui, ArrayList<InvoiceHeader> invoices) {
         int choice = gui.showYesNoCancelDialog(gui.getInvoicesItemsPanel(), "Do you want to save new customer name?", "Confirmation");
         switch (choice) {
             case 0 -> {
                 invoices.get(gui.getInvoiceTable().getSelectedRow()).setInoviceCustomerName(gui.getCustomerNameTextField().getText());
-                InvoicesHeaderController.updateTableCustomerName(gui, invoices);
+                InvoicesHeaderController.updateCustomerNameCoulmn(gui, invoices);
                 gui.getCustomerNameTextField().requestFocus();
             }
             case 1 ->

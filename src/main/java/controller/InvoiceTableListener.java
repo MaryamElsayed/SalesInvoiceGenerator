@@ -23,10 +23,9 @@ public class InvoiceTableListener implements ListSelectionListener {
         if (mainController.invoices.size() >= 1) {
             if (!e.getValueIsAdjusting()) {
                 mainController.selectedRow = view.getInvoiceTable().getSelectedRow();
-                view.getInvoicesLineTable().getSelectionModel().removeListSelectionListener(invoicesLineTableListener);
                 TablesController.loadInvoicesLineTable(view, mainController.invoices);
                 InvoicesLineController.updater(view, mainController.invoices, mainController.selectedRow);
-                view.getInvoicesLineTable().getSelectionModel().addListSelectionListener(invoicesLineTableListener);
+
             }
         }
     }

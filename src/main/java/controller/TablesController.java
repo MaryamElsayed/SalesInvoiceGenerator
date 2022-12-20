@@ -13,6 +13,13 @@ public class TablesController {
         String pattern = "MM-dd-yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         Object InvoiceHeaderData[] = new Object[4];
+        //clear table
+        int count =InvoicesHeaderTableModel.setInvoicesHeaderTableModel(gui).getRowCount();
+        for (int i=0;i<count;i++)
+        {
+            InvoicesHeaderTableModel.setInvoicesHeaderTableModel(gui).removeRow(0);
+        }
+
         //load invoice header row
         for (int i = 0; i < invoices.size(); i++) {
             InvoiceHeaderData[0] = invoices.get(i).getInoviceNumber();
